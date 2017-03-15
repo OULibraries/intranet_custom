@@ -1,0 +1,7 @@
+name = Intranet Custom
+description = A place for hodgepodge custom intranet code to live
+
+core = 7.x
+package = Drupal 7 Development
+
+files[] = intranet_custom.module
