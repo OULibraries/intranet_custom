@@ -1,0 +1,10 @@
+<?php
+
+// altering the cas module login block...taking out the subject
+function intranet_custom_block_view_cas_login_alter(&$data, $block){
+  global $user;
+
+  if (!$user->uid && !(arg(0) == 'user' && !is_numeric(arg(1)))) {
+    unset($data['subject']);
+  }
+}
