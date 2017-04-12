@@ -8,3 +8,22 @@ function intranet_custom_block_view_cas_login_alter(&$data, $block){
     unset($data['subject']);
   }
 }
+
+
+function intranet_custom_preprocess_username(&$vars) {
+
+  // Update the username so it's the full name of the user.
+  $account = $vars['account'];
+
+  // Revise the name trimming done in template_preprocess_username.
+  $name = $vars['name_raw'] = format_username($account);
+
+  // Trim the altered name as core does, but with a higher character limit.
+  if (drupal_strlen($name) > 55) {
+    $name = drupal_substr($name, 0, 45) . '...';
+  }
+
+  // Assign the altered name to $vars['name'].
+  $vars['name'] = check_plain($name);
+
+}
